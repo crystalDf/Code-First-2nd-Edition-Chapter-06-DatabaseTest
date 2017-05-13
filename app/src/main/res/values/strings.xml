@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DatabaseTest</string>
     <string name="create_database">Create database</string>
+    <string name="insert_data">Insert data</string>
 </resources>
