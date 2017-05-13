@@ -8,19 +8,30 @@ import android.widget.Toast;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String TABLE_BOOK = "book";
+    public static final String TABLE_BOOK = "Book";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_AUTHOR = "author";
     public static final String COLUMN_PRICE = "price";
     public static final String COLUMN_PAGES = "pages";
     public static final String COLUMN_NAME = "name";
 
+    public static final String TABLE_CATEGORY = "Category";
+    public static final String COLUMN_CATEGORY_ID = COLUMN_ID;
+    public static final String COLUMN_CATEGORY_NAME = "category_name";
+    public static final String COLUMN_CATEGORY_CODE = "category_code";
+
     public static final String CREATE_BOOK = "create table " + TABLE_BOOK + " (" +
             COLUMN_ID + " integer primary key autoincrement, " +
             COLUMN_AUTHOR + " text, " +
-            COLUMN_PRICE + " real " +
+            COLUMN_PRICE + " real, " +
             COLUMN_PAGES + " integer, " +
             COLUMN_NAME + " text" +
+            ")";
+
+    public static final String CREATE_CATEGORY = "create table " + TABLE_CATEGORY + " (" +
+            COLUMN_CATEGORY_ID + " integer primary key autoincrement, " +
+            COLUMN_CATEGORY_NAME + " text, " +
+            COLUMN_CATEGORY_CODE + " integer" +
             ")";
 
     private Context mContext;
@@ -35,11 +46,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(CREATE_BOOK);
+        db.execSQL(CREATE_CATEGORY);
         Toast.makeText(mContext, "Create succeeded", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        if (newVersion == 2) {
+            db.execSQL(CREATE_CATEGORY);
+        }
     }
 }
