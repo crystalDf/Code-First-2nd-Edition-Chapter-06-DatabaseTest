@@ -2,4 +2,7 @@
     <string name="app_name">DatabaseTest</string>
     <string name="create_database">Create database</string>
     <string name="insert_data">Insert data</string>
+    <string name="update_data">Update data</string>
+    <string name="delete_data">Delete data</string>
+    <string name="query_data">Query data</string>
 </resources>
