@@ -104,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
                 Cursor cursor = sqLiteDatabase.query(MyDatabaseHelper.TABLE_BOOK,
                         null, null, null, null, null, null);
 
-                if (cursor.moveToFirst()) {
+                if (cursor != null) {
 
-                    while (true) {
+                    while (cursor.moveToNext()) {
 
                         String name = cursor.getString(cursor.getColumnIndex(
                                 MyDatabaseHelper.COLUMN_NAME));
@@ -121,14 +121,10 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "Book author is " + author);
                         Log.d(TAG, "Book pages is " + pages);
                         Log.d(TAG, "Book price is " + price);
-
-                        if (!cursor.moveToNext()) {
-                            break;
-                        }
                     }
-                }
 
-                cursor.close();
+                    cursor.close();
+                }
             }
         });
     }
